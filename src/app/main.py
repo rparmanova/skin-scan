@@ -41,10 +41,14 @@ async def health():
 @app.get("/debug")
 def debug():
     import mediapipe as mp
-    return {"mediapipe_version": mp.__version__}
     import platform
     platform.machine()
-    
+    return {
+        "mediapipe_version": mp.__version__,
+        "architecture": platform.machine(),
+        "python_version": platform.python_version()
+    }
+
 @app.post("/scan", response_model=ScanResponse)
 async def scan(image: UploadFile = File(...)):
     """
