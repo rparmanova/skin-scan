@@ -42,7 +42,9 @@ async def health():
 def debug():
     import mediapipe as mp
     return {"mediapipe_version": mp.__version__}
-
+    import platform
+    platform.machine()
+    
 @app.post("/scan", response_model=ScanResponse)
 async def scan(image: UploadFile = File(...)):
     """
