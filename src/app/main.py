@@ -38,6 +38,10 @@ async def health():
     """Health check endpoint."""
     return {"ok": True}
 
+@app.get("/debug")
+def debug():
+    import mediapipe as mp
+    return {"mediapipe_version": mp.__version__}
 
 @app.post("/scan", response_model=ScanResponse)
 async def scan(image: UploadFile = File(...)):
