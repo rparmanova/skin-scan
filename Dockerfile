@@ -14,11 +14,11 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*
 
 # Copy dependency files
-COPY pyproject.toml ./
+COPY requirements.txt ./
 
 # Install uv and dependencies
 RUN pip install --no-cache-dir uv && \
-    uv pip install --system -e .
+    uv pip install --system -r requirements.txt
 
 # Copy application code
 COPY . .
